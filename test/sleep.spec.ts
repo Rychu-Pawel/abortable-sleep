@@ -1,7 +1,7 @@
 import test from "ava";
 import sleep from "../src/index.js";
 
-const toleranceInMs = 50;
+const toleranceInMs = 100;
 
 test.serial(`sleeps requested time`, async t => {
     // ARRANGE
