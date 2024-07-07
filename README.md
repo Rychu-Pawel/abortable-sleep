@@ -12,3 +12,8 @@ npm install abortable-sleep
 
 ## Example
 
+```typescript
+const abortController = new AbortController();
+
+await sleep(1000, abortController.signal);
+```
