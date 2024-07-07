@@ -1,7 +1,9 @@
 import test from "ava";
 import sleep from "../src/index.js";
 
-test(`sleeps requested time`, async t => {
+const toleranceInMs = 50;
+
+test.serial(`sleeps requested time`, async t => {
     // ARRANGE
     const sleepTime = 200;
 
@@ -14,10 +16,10 @@ test(`sleeps requested time`, async t => {
 
     // ASSERT
     t.true(endTime - startTime > sleepTime);
-    t.true(endTime - startTime < sleepTime + 50);
+    t.true(endTime - startTime < sleepTime + toleranceInMs);
 });
 
-test(`returns immediately when called with aborted signal`, async t => {
+test.serial(`returns immediately when called with aborted signal`, async t => {
     // ARRANGE
     const sleepTime = 200;
 
@@ -36,7 +38,7 @@ test(`returns immediately when called with aborted signal`, async t => {
     t.true(endTime - startTime < 2);
 });
 
-test(`returns immediately after abort is called`, async t => {
+test.serial(`returns immediately after abort is called`, async t => {
     // ARRANGE
     const sleepTime = 200;
     const abortAfter = 50;
@@ -54,5 +56,5 @@ test(`returns immediately after abort is called`, async t => {
 
     // ASSERT
     t.true(endTime - startTime > abortAfter);
-    t.true(endTime - startTime < abortAfter + 50);
+    t.true(endTime - startTime < abortAfter + toleranceInMs);
 });
